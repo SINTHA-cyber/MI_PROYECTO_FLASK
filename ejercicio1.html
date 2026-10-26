@@ -6,57 +6,58 @@
 
     <meta charset="UTF-8">
 
-    <title>Formulario de Notas</title>
+    <title>Compra de pintura</title>
 
 </head>
 
 <body>
 
-    <h1>Formulario de Notas</h1>
+    <h1>Calculadora de compra de pintura</h1>
 
-    <form action="/ejercicio1" method="post">
+    <form method="POST">
 
-        <label>Nota 1:</label>
+        <label>Nombre del cliente:</label>
 
-        <input type="number" name="nota1" min="10" max="70" required>
-
-        <br><br>
-
-        <label>Nota 2:</label>
-
-        <input type="number" name="nota2" min="10" max="70" required>
+        <input type="text" name="nombre" required>
 
         <br><br>
 
-        <label>Nota 3:</label>
+        <label>Edad:</label>
 
-        <input type="number" name="nota3" min="10" max="70" required>
-
-        <br><br>
-
-        <label>Asistencia (%):</label>
-
-        <input type="number" name="asistencia" min="0" max="100" required>
+        <input type="number" name="edad" min="1" required>
 
         <br><br>
 
-        <button type="submit">Enviar</button>
+        <label>Cantidad de tarros de pintura:</label>
+
+        <input type="number" name="cantidad" min="1" required>
+
+        <br><br>
+
+        <button ty
+
+        pe="submit">Calcular compra</button>
 
     </form>
 
-    {% if promedio is not none %}
+    {% if nombre %}
 
-        <h2>Promedio: {{ promedio }}</h2>
+        <h2>Resultado de la compra</h2>
 
-        <h2>Resultado: {{ estado }}</h2>
+        <p>Cliente: {{ nombre }}</p>
+
+        <p>Total sin descuento: ${{ total }}</p>
+
+        <p>Descuento: ${{ descuento }}</p>
+
+        <p><strong>Total a pagar: ${{ total_pagar }}</strong></p>
 
     {% endif %}
 
-    <p>
+    <br>
 
-        <a href="/">Volver al menú principal</a>
-
-    </p>
+    <a href="/">Volver al menú principal</a>
 
 </body>
-</html>
+
+</html>    
