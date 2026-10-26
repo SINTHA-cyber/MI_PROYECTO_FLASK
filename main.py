@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-app = Flask(__name__)
+app = Flask(_name_)
 
 @app.route("/")
 
@@ -12,37 +12,45 @@ def inicio():
 
 def ejercicio1():
 
-    promedio = None
+    nombre = ""
 
-    estado = ""
+    total = 0
+
+    descuento = 0
+
+    total_pagar = 0
 
     if request.method == "POST":
 
-        nota1 = float(request.form["nota1"])
+        nombre = request.form["nombre"]
 
-        nota2 = float(request.form["nota2"])
+        edad = int(request.form["edad"])
 
-        nota3 = float(request.form["nota3"])
+        cantidad = int(request.form["cantidad"])
 
-        asistencia = float(request.form["asistencia"])
+        total = cantidad * 9000
 
-        promedio = round((nota1 + nota2 + nota3) / 3, 1)
+        if 18 <= edad <= 30:
 
-        if promedio >= 40 and asistencia >= 75:
+            descuento = total * 0.15
 
-            estado = "APROBADO"
+        elif edad > 30:
 
-        else:
+            descuento = total * 0.25
 
-            estado = "REPROBADO"
+        total_pagar = total - descuento
 
     return render_template(
 
         "ejercicio1.html",
 
-        promedio=promedio,
+        nombre=nombre,
 
-        estado=estado
+        total=total,
+
+        descuento=descuento,
+
+        total_pagar=total_pagar
 
     )
 
@@ -50,34 +58,28 @@ def ejercicio1():
 
 def ejercicio2():
 
-    nombre_mayor = ""
-
-    cantidad = 0
+    mensaje = ""
 
     if request.method == "POST":
 
-        nombre1 = request.form["nombre1"].strip()
+        usuario = request.form["usuario"]
 
-        nombre2 = request.form["nombre2"].strip()
+        clave = request.form["clave"]
 
-        nombre3 = request.form["nombre3"].strip()
+        if usuario == "juan" and clave == "admin":
 
-        nombres = [nombre1, nombre2, nombre3]
+            mensaje = "Bienvenido administrador juan"
 
-        nombre_mayor = max(nombres, key=len)
+        elif usuario == "pepe" and clave == "user":
 
-        cantidad = len(nombre_mayor)
+            mensaje = "Bienvenido usuario pepe"
 
-    return render_template(
+        else:
 
-        "ejercicio2.html",
+            mensaje = "Usuario o contraseña incorrectos"
 
-        nombre_mayor=nombre_mayor,
+    return render_template("ejercicio2.html", mensaje=mensaje)
 
-        cantidad=cantidad
-
-    )
-
-if __name__ == "__main__":
+if _name_ == "_main_":
 
     app.run(debug=True)
